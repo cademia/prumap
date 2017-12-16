@@ -1,0 +1,5 @@
+-e git+https://github.com/mobolic/facebook-sdk.git#egg=facebook-sdk
+Flask
+Flask-SQLAlchemy
+Flask-Security
+Beaker

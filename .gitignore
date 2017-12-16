@@ -1,0 +1,15 @@
+# python compiled files
+*.py[cod]
+
+# l10n files
+*.mo
+*.pot
+
+# Environments
+env/
+
+# Local stuff
+*.bak
+app.db
+localconfig.py
+logs/*.log

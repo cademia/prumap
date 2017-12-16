@@ -6,6 +6,7 @@ import logging
 import logging.handlers
 from beaker.middleware import SessionMiddleware
 from flask_sqlalchemy import SQLAlchemy
+from flask_security import Security, SQLAlchemyUserDatastore
 from functools import wraps
 from werkzeug.routing import BaseConverter
 from pprint import pprint
@@ -61,6 +62,10 @@ def view(template=None):
 
 
 import models
+
+user_datastore = SQLAlchemyUserDatastore(db, models.User, models.Role)
+security = Security(app, user_datastore)
+
 import core
 manager = core.Manager()
 

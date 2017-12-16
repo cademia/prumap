@@ -1,15 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
 {% from "security/_macros.html" import render_field_with_errors, render_field %}
-{% include "security/_messages.html" %}
 <form action="{{ url_for_security('login') }}" method="POST" name="login_user_form" class="form-signin">
-  <h2 class="form-signin-heading">{{ _("Login") }}</h2>
+  {% include "security/_messages.html" %}
+  <h2 class="form-signin-heading">{{ _("Plase sign in") }}</h2>
   {{ login_user_form.hidden_tag() }}
-  {{ render_field_with_errors(login_user_form.email) }}
-  {{ render_field_with_errors(login_user_form.password) }}
+  {{ render_field_with_errors(login_user_form.email, class_='form-control', placeholder=_("E-mail address")) }}
+  {{ render_field_with_errors(login_user_form.password, class_='form-control', placeholder=_("Password")) }}
   {{ render_field_with_errors(login_user_form.remember) }}
   {{ render_field(login_user_form.next) }}
-  {{ render_field(login_user_form.submit) }}
+  {{ render_field(login_user_form.submit, class_='btn btn-lg btn-primary btn-block') }}
 </form>
 {% include "security/_menu.html" %}
 {% endblock %}

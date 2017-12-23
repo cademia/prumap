@@ -150,3 +150,29 @@ class Education(db.Model):
 
     def __repr__(self):
         return '<Education "%r">' % self.name
+
+
+class Source(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    sentence = db.Column(db.String, nullable=False)
+    expected = db.Column(db.String, nullable=True)
+    datetime = db.Column(db.DateTime, nullable=False)
+
+    def __repr__(self):
+        return '<Source "%r">' % self.sentence
+
+
+class Translation(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    datetime = db.Column(db.DateTime, nullable=False)
+    source_id = db.Column(db.Integer, db.ForeignKey('source.id'), nullable=False)
+    source = db.relationship('Source', backref=db.backref('translations', lazy=True))
+    author_id = db.Column(db.Integer, db.ForeignKey('volunteer.id'), nullable=False)
+    author = db.relationship('Volunteer', backref=db.backref('translations', lazy=True))
+    reported = db.Column(db.Boolean, default=False)
+    location_id = db.Column(db.Integer, db.ForeignKey('location.id'), nullable=True)
+    location = db.relationship('Location', backref=db.backref('translations', lazy=True))
+    sentence = db.Column(db.String, nullable=False)
+
+    def __repr__(self):
+        return '<Translation "%r">' % self.sentence

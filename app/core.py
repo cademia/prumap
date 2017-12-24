@@ -13,11 +13,16 @@ import logging
 # ...
 # ...
 
+from . import fbhelper
+
 class Manager(object):
     def __init__(self):
         self.logger = logging.getLogger(__name__)
         db.create_all()
         self.session = SignallingSession(db)
+        self.app = app
+
+        self.fb = fbhelper.FBHelper(self)
 
     @view()
     @login_required
